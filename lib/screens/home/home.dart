@@ -2,10 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../widgets/background.dart';
 import '../../widgets/home_tile.dart';
+import '../profile/profile_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -54,12 +56,19 @@ class HomeState extends State<Home> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 40,
-                            width: 40,
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(100)),
+                          child: GestureDetector(
+                            onTap: (){
+                              Get.to(ProfilePage(),
+                                transition: Transition.leftToRightWithFade,
+                                duration: const Duration(milliseconds: 800),);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 40,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
                           ),
                         ),
                         const Column(
@@ -177,30 +186,34 @@ class HomeState extends State<Home> {
                 // const SizedBox(height: 30,),
                 const Spacer(),
 
-                const Center(
+                 Center(
                   child: Wrap(
                     spacing: 14,
                     runSpacing: 14,
                     children: [
                       HomeTile(
-                        backgroundColor: Color(0xFF8DC63F),
+                        onTap: (){},
+                        backgroundColor: const Color(0xFF8DC63F),
                         img: "assets/icons/let_me_checkin_light.svg",
                         name: "LET ME\n CHECK IN",
                         textColor: Colors.white,
                       ),
                       HomeTile(
+                        onTap: (){},
                         backgroundColor: Colors.white,
                         img: "assets/icons/attendance_history_dark.svg",
                         name: "ATTENDANCE \nHISTORY",
                         textColor: Colors.black,
                       ),
                       HomeTile(
+                        onTap: (){},
                         backgroundColor: Colors.white,
                         img: "assets/icons/time_sheet_dark.svg",
                         name: "MY \nTIME SHEET",
                         textColor: Colors.black,
                       ),
                       HomeTile(
+                        onTap: (){},
                         backgroundColor: Colors.white,
                         img: "assets/icons/working_on_dark.svg",
                         name: "WORKING ON \nTICKETS",
