@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:attendance/screens/home/dashboard/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -58,9 +59,9 @@ class HomeState extends State<Home> {
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
                             onTap: (){
-                              Get.to(ProfilePage(),
+                              Get.to(const ProfilePage(),
                                 transition: Transition.leftToRightWithFade,
-                                duration: const Duration(milliseconds: 800),);
+                                duration: const Duration(milliseconds: 500),);
                             },
                             child: Container(
                               height: 40,
@@ -192,28 +193,52 @@ class HomeState extends State<Home> {
                     runSpacing: 14,
                     children: [
                       HomeTile(
-                        onTap: (){},
+                        onTap: (){
+                          Get.to(
+                              const Dashboard(index: 0,),
+                            transition: Transition.zoom,
+                            duration: const Duration(milliseconds: 500),
+                          );
+                        },
                         backgroundColor: const Color(0xFF8DC63F),
                         img: "assets/icons/let_me_checkin_light.svg",
                         name: "LET ME\n CHECK IN",
                         textColor: Colors.white,
                       ),
                       HomeTile(
-                        onTap: (){},
+                        onTap: (){
+                          Get.to(
+                          const Dashboard(index: 1,),
+                          transition: Transition.zoom,
+                          duration: const Duration(milliseconds: 500),
+                        );
+                          },
                         backgroundColor: Colors.white,
                         img: "assets/icons/attendance_history_dark.svg",
                         name: "ATTENDANCE \nHISTORY",
                         textColor: Colors.black,
                       ),
                       HomeTile(
-                        onTap: (){},
+                        onTap: (){
+                          Get.to(
+                            const Dashboard(index: 2,),
+                            transition: Transition.zoom,
+                            duration: const Duration(milliseconds: 500),
+                          );
+                        },
                         backgroundColor: Colors.white,
                         img: "assets/icons/time_sheet_dark.svg",
                         name: "MY \nTIME SHEET",
                         textColor: Colors.black,
                       ),
                       HomeTile(
-                        onTap: (){},
+                        onTap: (){
+                          Get.to(
+                            const Dashboard(index: 3,),
+                            transition: Transition.zoom,
+                            duration: const Duration(milliseconds: 500),
+                          );
+                        },
                         backgroundColor: Colors.white,
                         img: "assets/icons/working_on_dark.svg",
                         name: "WORKING ON \nTICKETS",
