@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:attendance/screens/home/dashboard/dashboard.dart';
+import 'package:attendance/screens/home/qr_scan_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -195,7 +196,8 @@ class HomeState extends State<Home> {
                       HomeTile(
                         onTap: (){
                           Get.to(
-                              const Dashboard(index: 0,),
+                              // const Dashboard(index: 0,),
+                            const QrScanPage(),
                             transition: Transition.zoom,
                             duration: const Duration(milliseconds: 500),
                           );

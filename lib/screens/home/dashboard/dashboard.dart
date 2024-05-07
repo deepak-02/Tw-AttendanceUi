@@ -50,12 +50,12 @@ class DashboardState extends State<Dashboard> {
     ];
 
     return PopScope(
-      canPop: _currentIndex== 0, // Disable back gesture if not on the first page
+      canPop: true,//_currentIndex== 0, // Disable back gesture if not on the first page
       onPopInvoked: (bool didPop) {
-        if (!didPop) {
-          // Navigate to the first page if the back gesture was blocked
-          _pageController.jumpToPage(0);
-        }
+        // if (!didPop) {
+        //   // Navigate to the first page if the back gesture was blocked
+        //   _pageController.jumpToPage(0);
+        // }
       },
       child: Scaffold(
         extendBody: true,
