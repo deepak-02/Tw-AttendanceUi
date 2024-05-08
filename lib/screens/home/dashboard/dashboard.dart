@@ -1,6 +1,8 @@
+import 'package:attendance/screens/home/dashboard/report/attendance_report.dart';
 import 'package:flutter/material.dart';
 
 import '../../../widgets/bottomNavBar/navbar_item.dart';
+import 'checkedin/checkin_page.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({super.key,  this.index});
@@ -43,8 +45,8 @@ class DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
 
     List<Widget> pages = [
-      Container(color: Colors.red),
-      Container(color: Colors.green),
+      const CheckInPage(),
+      const AttendanceReport(),
       Container(color: Colors.blue),
       Container(color: Colors.yellow),
     ];

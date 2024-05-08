@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../widgets/background.dart';
 import '../profile/profile_page.dart';
@@ -153,13 +152,13 @@ class _QrScanPageState extends State<QrScanPage> {
 
                               // Handle the scanned data here
 
-                              Fluttertoast.showToast(
-                                  msg: "${scanData.code}",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  fontSize: 16.0
-                              );
+                              // Fluttertoast.showToast(
+                              //     msg: "${scanData.code}",
+                              //     toastLength: Toast.LENGTH_SHORT,
+                              //     gravity: ToastGravity.CENTER,
+                              //     timeInSecForIosWeb: 1,
+                              //     fontSize: 16.0
+                              // );
 
 
                               controller.pauseCamera();
