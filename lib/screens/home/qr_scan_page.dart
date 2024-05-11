@@ -45,9 +45,9 @@ class _QrScanPageState extends State<QrScanPage> {
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
                             onTap: (){
-                              Get.to(const ProfilePage(),
-                                transition: Transition.leftToRightWithFade,
-                                duration: const Duration(milliseconds: 500),);
+                              // Get.to(const ProfilePage(),
+                              //   transition: Transition.leftToRightWithFade,
+                              //   duration: const Duration(milliseconds: 500),);
                             },
                             child: Container(
                               height: 40,

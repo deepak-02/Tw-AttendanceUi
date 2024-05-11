@@ -7,9 +7,8 @@ import '../../../../widgets/shifttiles.dart';
 import '../../../../widgets/timeindicator.dart';
 import '../../../profile/profile_page.dart';
 
-
 class CheckInPage extends StatefulWidget {
-  const CheckInPage({super.key});
+   const CheckInPage({super.key});
 
   @override
   State<CheckInPage> createState() => _CheckInPageState();
@@ -29,12 +28,14 @@ class _CheckInPageState extends State<CheckInPage> {
           child: Row(
             children: [
               Padding(
-                padding: const EdgeInsets.fromLTRB(30,10,10,10),
+                padding: const EdgeInsets.fromLTRB(30, 10, 10, 10),
                 child: GestureDetector(
-                  onTap: (){
-                    Get.to(const ProfilePage(),
+                  onTap: () {
+                    Get.to(
+                      const ProfilePage(),
                       transition: Transition.leftToRightWithFade,
-                      duration: const Duration(milliseconds: 500),);
+                      duration: const Duration(milliseconds: 500),
+                    );
                   },
                   child: Container(
                     height: 40,
@@ -71,7 +72,6 @@ class _CheckInPageState extends State<CheckInPage> {
             ],
           ),
         ),
-        
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(10, 20, 10, 0),
@@ -79,7 +79,7 @@ class _CheckInPageState extends State<CheckInPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child:Column(
+              child: Column(
                 children: [
                   Column(
                     children: [
@@ -91,7 +91,7 @@ class _CheckInPageState extends State<CheckInPage> {
                       const SizedBox(height: 10),
                       const Text(
                         "You're logged in \nfor the day",
-                      textAlign: TextAlign.center,
+                        textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 22,
@@ -99,17 +99,15 @@ class _CheckInPageState extends State<CheckInPage> {
                           height: 0.0,
                         ),
                       ),
-
                     ],
                   ),
-
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
                         "assets/icons/location-pin.svg",
                       ),
-                       // Space between the avatar and the name
+                      // Space between the avatar and the name
                       const Text(
                         'From Office',
                         textAlign: TextAlign.center,
@@ -119,9 +117,12 @@ class _CheckInPageState extends State<CheckInPage> {
                           fontWeight: FontWeight.w400,
                           height: 0,
                         ),
-                      )                        ],
+                      )
+                    ],
                   ),
-                  const SizedBox(height: 10,),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   const TimeRangeProgressIndicator(
                     startTime: '08:00 AM', // Replace with your start time
                     endTime: '05:30 PM',
@@ -130,77 +131,87 @@ class _CheckInPageState extends State<CheckInPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Center(
-                child: Column(
-                  children: [
-                    const AttendanceWidget(
-                      date: 'Monday 1 May 2024',
-                      presentText: 'Present',
-                      checkInTime: '08:30',
-                      checkOutTime: '00:00',
-                      totalHours: '4.5 hours',
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        ElevatedButton(
-                          onPressed: () {
-                            Get.off(const Home());
-                            // Implement check-in button functionality
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffee6f6e),
-                            minimumSize: const Size(164, 58), // Adjust the button size here
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                 // Adjust the border radius for one side
-                                bottomLeft: Radius.circular(10.0),bottomRight: Radius.circular(10.0), // Adjust the border radius for one side
-                              ),
-                            ),
-                          ),
-                          child: const Text('CHECK OUT',style: TextStyle(color: Colors.white),),
-                        ),
-                         // Add space between buttons
-                        ElevatedButton(
-
-                          onPressed: () {
-                            // Implement check-out button functionality
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffe3a400),
-                            minimumSize:  const Size(164, 58), // Adjust the button size here
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                 // Adjust the border radius for one side
-                                bottomRight: Radius.circular(10.0),bottomLeft: Radius.circular(10.0), // Adjust the border radius for one side
-                              ),
-                            ),
-                          ),
-                          child: const Text(
-                            'TAKE A BREAK',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13.30,
-                              fontFamily: 'Inter',
-                              fontWeight: FontWeight.w500,
-                              height: 0,
+              child: Column(
+                children: [
+                  const AttendanceWidget(
+                    date: 'Monday 1 May 2024',
+                    presentText: 'Present',
+                    checkInTime: '08:30',
+                    checkOutTime: '00:00',
+                    totalHours: '4.5 hours',
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Get.off(const Home());
+                          // Implement check-in button functionality
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffee6f6e),
+                          minimumSize: const Size(
+                              164, 58), // Adjust the button size here
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              // Adjust the border radius for one side
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(
+                                  10.0), // Adjust the border radius for one side
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        child: const Text(
+                          'CHECK OUT',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                      // Add space between buttons
+                      ElevatedButton(
+                        onPressed: () {
+                          // Implement check-out button functionality
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffe3a400),
+                          minimumSize: const Size(
+                              164, 58), // Adjust the button size here
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              // Adjust the border radius for one side
+                              bottomRight: Radius.circular(10.0),
+                              bottomLeft: Radius.circular(
+                                  10.0), // Adjust the border radius for one side
+                            ),
+                          ),
+                        ),
+                        child: const Text(
+                          'TAKE A BREAK',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 13.30,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w500,
+                            height: 0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
 
-            const SizedBox(height: 10,),
-
+            const SizedBox(
+              height: 10,
+            ),
 
             const Center(
-              child:  Text(
+              child: Text(
                 'Recent Activity',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -218,7 +229,9 @@ class _CheckInPageState extends State<CheckInPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
 
                     ShiftInfoTile(
                       color: Color(0xfffff5da), // Specify your desired color
@@ -226,7 +239,9 @@ class _CheckInPageState extends State<CheckInPage> {
                       startShift: '10:00', // Specify your start shift time
                       endShift: '10:15', // Specify your end shift time
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     ShiftInfoTile(
                       color: Color(0xfffff5da), // Specify your desired color
                       breakText: 'Break', // Specify your break text
@@ -239,7 +254,6 @@ class _CheckInPageState extends State<CheckInPage> {
                 ),
               ),
             ),
-
           ],
         ),
       ),

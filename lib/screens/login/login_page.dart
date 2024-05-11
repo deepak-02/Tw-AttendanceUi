@@ -2,7 +2,8 @@ import 'package:attendance/screens/home/home.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
+import 'package:phone_number_suggestion_3/models/phone_number_suggestion_model.dart';
+import 'package:phone_number_suggestion_3/phone_number_suggestion_3.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,29 +17,45 @@ class _LoginPageState extends State<LoginPage> {
   String phoneNumber = '';
   TextEditingController phoneController =  TextEditingController();
 
+  final _phoneNumberSuggestion_3Plugin = PhoneNumberSuggestion_3();
+
+
+  @override
+  void initState() {
+    super.initState();
+    getNumber(context: context);
+  }
+
+  @override
+  void dispose() {
+    phoneController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: Container(
-              color: const Color(0xff21206a),
-              child: Center(
-                child: SizedBox(
-                    width: 80,
-                    child: Image.asset(
-                      "assets/icons/splash_logo.png",
-                      fit: BoxFit.fitWidth,
-                    )),
+    return GestureDetector(
+      onTap: (){
+        FocusScope.of(context).unfocus();
+      },
+      child: Scaffold(
+        body: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: Container(
+                color: const Color(0xff21206a),
+                child: Center(
+                  child: SizedBox(
+                      width: 80,
+                      child: Image.asset(
+                        "assets/icons/splash_logo.png",
+                        fit: BoxFit.fitWidth,
+                      )),
+                ),
               ),
             ),
-          ),
-
-          Expanded(
-            flex: 2,
-            child: Column(
+            Column(
               children: [
                 const Padding(
                   padding: EdgeInsets.only(left: 10, right: 10, top: 20),
@@ -57,10 +74,10 @@ class _LoginPageState extends State<LoginPage> {
                   child: Row(children: <Widget>[
                     Expanded(
                         child: Divider(
-                      indent: 20.0,
-                      endIndent: 10.0,
-                      thickness: 1.5,
-                    )),
+                          indent: 20.0,
+                          endIndent: 10.0,
+                          thickness: 1.5,
+                        )),
                     Text(
                       "Login with us",
                       style: TextStyle(
@@ -69,17 +86,17 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                         child: Divider(
-                      indent: 20.0,
-                      endIndent: 10.0,
-                      thickness: 1.5,
-                    )),
+                          indent: 20.0,
+                          endIndent: 10.0,
+                          thickness: 1.5,
+                        )),
                   ]),
                 ),
 
+
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: IntlPhoneField(
-                    disableLengthCheck: true,
+                  child: TextFormField(
                     controller: phoneController,
                     decoration: const InputDecoration(
                       labelText: 'Phone Number',
@@ -87,15 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(),
                       ),
                     ),
-                    initialCountryCode: 'IN',
-                    onChanged: (phone) {
-                      setState(() {
-                        phoneNumber = phone.completeNumber;
-                      });
-                      if (kDebugMode) {
-                        print(phone.completeNumber);
-                      }
-                    },
+                    onChanged: (value){},
                   ),
                 ),
 
@@ -117,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                           print(phoneController.text);
                           print(phoneNumber);
                         }
-                        Get.to(
+                        Get.offAll(
                           const Home(),
                           transition: Transition.circularReveal,
                           duration: const Duration(milliseconds: 800),
@@ -132,29 +141,32 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-          ),
-        ],
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
+
+  void getNumber({required BuildContext context}) async {
+    PhoneNumber intlPhoneFieldData = await _phoneNumberSuggestion_3Plugin.getPhoneNumber(); // Use the aliased import
+    getMessage(intlPhoneFieldData: intlPhoneFieldData);
+  }
+
+  String getMessage({required PhoneNumber intlPhoneFieldData}) { // Adjust the parameter name accordingly
+    switch (intlPhoneFieldData) { // Use the aliased import
+      case Success():
+        phoneController.text=intlPhoneFieldData.phoneNumber;
+        return intlPhoneFieldData.phoneNumber; // Adjust the property name accordingly
+      case Failure():
+        return intlPhoneFieldData.errorMessage; // Adjust the property name accordingly
+      case ClosedByUser():
+        return 'closed by user';
+      case NoneOfTheSelected():
+        return 'error occurred';
+    }
+  }
+
+
 }
 
-// //sms_autofill
-// @override
-// void initState() {
-//   super.initState();
-//   Future<void>.delayed(const Duration(milliseconds: 300), _tryPasteCurrentPhone);
-// }
-//
-// Future _tryPasteCurrentPhone() async {
-//   if (!mounted) return;
-//   try {
-//     final autoFill = SmsAutoFill();
-//     final phone = await autoFill.hint;
-//     if (phone == null) return;
-//     if (!mounted) return;
-//     _textController.value = phone;
-//   } on PlatformException catch (e) {
-//     print('Failed to get mobile number because of: ${e.message}');
-//   }
-// }
