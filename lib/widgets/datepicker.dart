@@ -41,7 +41,7 @@ class MonthYearPickerState extends State<MonthYearPicker> {
         initialDate: DateTime(_year, _month),
         firstDate: DateTime(1901, 1),
         lastDate: DateTime(2100));
-    if (picked!= null) {
+    if (picked != null) {
       setState(() {
         _month = picked.month;
         _year = picked.year;
@@ -57,7 +57,10 @@ class MonthYearPickerState extends State<MonthYearPicker> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton(
-              icon: const Icon(Icons.chevron_left_rounded,size: 40,),
+              icon: const Icon(
+                Icons.chevron_left_rounded,
+                size: 40,
+              ),
               onPressed: _navigateToPreviousMonth,
               tooltip: "Previous Month",
             ),
@@ -66,28 +69,35 @@ class MonthYearPickerState extends State<MonthYearPicker> {
               child: GestureDetector(
                 onTap: () => _selectedDate(context),
                 child: Row(
-
                   children: [
-                    Text(DateFormat('MMMM').format(DateTime(_year, _month)), style: const TextStyle(
-                      color: Color(0xFF061859),
-                      fontSize: 20.12,
-                      fontWeight: FontWeight.w500,
-                      height: 0,
-                    ),),
+                    Text(
+                      DateFormat('MMMM').format(DateTime(_year, _month)),
+                      style: const TextStyle(
+                        color: Color(0xFF061859),
+                        fontSize: 20.12,
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
+                    ),
                     const SizedBox(width: 5),
-                    Text('$_year', style: const TextStyle(
-                      color: Color(0xFF061859),
-                      fontSize: 20.12,
-
-                      fontWeight: FontWeight.w500,
-                      height: 0,
-                    ),),
+                    Text(
+                      '$_year',
+                      style: const TextStyle(
+                        color: Color(0xFF061859),
+                        fontSize: 20.12,
+                        fontWeight: FontWeight.w500,
+                        height: 0,
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
             IconButton(
-              icon: const Icon(Icons.chevron_right_rounded,size: 40,),
+              icon: const Icon(
+                Icons.chevron_right_rounded,
+                size: 40,
+              ),
               onPressed: _navigateToNextMonth,
               tooltip: "Next Month",
             ),
@@ -95,4 +105,5 @@ class MonthYearPickerState extends State<MonthYearPicker> {
         ),
       ],
     );
-  }}
+  }
+}

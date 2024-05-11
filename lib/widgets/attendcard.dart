@@ -20,20 +20,18 @@ class AttendanceWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-
-
       padding: const EdgeInsets.all(16.0),
       decoration: const BoxDecoration(
         color: Colors.white,
-
         borderRadius: BorderRadius.only(
           // Adjust the border radius for one side
-          topLeft: Radius.circular(10.0),topRight: Radius.circular(10.0), // Adjust the border radius for one side
+          topLeft: Radius.circular(10.0),
+          topRight:
+              Radius.circular(10.0), // Adjust the border radius for one side
         ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +73,6 @@ class AttendanceWidget extends StatelessWidget {
             lineStyle: DividerLineStyle.dashed,
           ),
 
-
           const SizedBox(height: 8.0),
           IntrinsicHeight(
             child: Row(
@@ -115,14 +112,16 @@ class AttendanceWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 4.0),
-        Text(time,style: const TextStyle(
-          color: Color(0xFF535353),
-          fontSize: 14,
-          fontFamily: 'Inter',
-          fontWeight: FontWeight.w500,
-          height: 0,
-        ),),
-
+        Text(
+          time,
+          style: const TextStyle(
+            color: Color(0xFF535353),
+            fontSize: 14,
+            fontFamily: 'Inter',
+            fontWeight: FontWeight.w500,
+            height: 0,
+          ),
+        ),
       ],
     );
   }

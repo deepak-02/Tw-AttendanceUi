@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class ProfileTile extends StatelessWidget {
   const ProfileTile({
-    super.key, required this.title, required this.content,
+    super.key,
+    required this.title,
+    required this.content,
   });
 
   final String title;
@@ -11,7 +13,7 @@ class ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,right: 10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: ListTile(
         title: Text(
           title,

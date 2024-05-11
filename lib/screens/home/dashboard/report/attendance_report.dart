@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import '../../../../widgets/attendcard.dart';
 import '../../../../widgets/datepicker.dart';
 
-
 class AttendanceReport extends StatelessWidget {
   const AttendanceReport({super.key});
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color(0xffededee),
       appBar: AppBar(
@@ -17,7 +15,7 @@ class AttendanceReport extends StatelessWidget {
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(kToolbarHeight),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(20,10,20,10),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -25,8 +23,14 @@ class AttendanceReport extends StatelessWidget {
                 const Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(Icons.chevron_left_rounded,color: Colors.white,size:30 ,),
-                    SizedBox(width: 15,),
+                    Icon(
+                      Icons.chevron_left_rounded,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
                     Text(
                       'Attendance Report',
                       style: TextStyle(
@@ -51,9 +55,7 @@ class AttendanceReport extends StatelessWidget {
             ),
           ),
         ),
-
       ),
-
       body: Column(
         children: [
           const MonthYearPicker(),
@@ -61,7 +63,6 @@ class AttendanceReport extends StatelessWidget {
             child: ListView.builder(
               itemCount: 15,
               itemBuilder: (context, index) {
-
                 return const ListTile(
                   title: AttendanceWidget(
                     date: 'Monday 1 April 2024',
@@ -77,9 +78,5 @@ class AttendanceReport extends StatelessWidget {
         ],
       ),
     );
-
-
-
-
   }
 }

@@ -8,7 +8,7 @@ import '../../../../widgets/timeindicator.dart';
 import '../../../profile/profile_page.dart';
 
 class CheckInPage extends StatefulWidget {
-   const CheckInPage({super.key});
+  const CheckInPage({super.key});
 
   @override
   State<CheckInPage> createState() => _CheckInPageState();

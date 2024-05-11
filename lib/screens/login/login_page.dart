@@ -15,10 +15,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String countryCode = 'IN';
   String phoneNumber = '';
-  TextEditingController phoneController =  TextEditingController();
+  TextEditingController phoneController = TextEditingController();
 
   final _phoneNumberSuggestion_3Plugin = PhoneNumberSuggestion_3();
-
 
   @override
   void initState() {
@@ -35,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
@@ -64,20 +63,18 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
                   ),
                 ),
-
                 const SizedBox(
                   height: 30,
                 ),
-
                 const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Row(children: <Widget>[
                     Expanded(
                         child: Divider(
-                          indent: 20.0,
-                          endIndent: 10.0,
-                          thickness: 1.5,
-                        )),
+                      indent: 20.0,
+                      endIndent: 10.0,
+                      thickness: 1.5,
+                    )),
                     Text(
                       "Login with us",
                       style: TextStyle(
@@ -86,14 +83,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Expanded(
                         child: Divider(
-                          indent: 20.0,
-                          endIndent: 10.0,
-                          thickness: 1.5,
-                        )),
+                      indent: 20.0,
+                      endIndent: 10.0,
+                      thickness: 1.5,
+                    )),
                   ]),
                 ),
-
-
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -104,10 +99,9 @@ class _LoginPageState extends State<LoginPage> {
                         borderSide: BorderSide(),
                       ),
                     ),
-                    onChanged: (value){},
+                    onChanged: (value) {},
                   ),
                 ),
-
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: SizedBox(
@@ -149,24 +143,26 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void getNumber({required BuildContext context}) async {
-    PhoneNumber intlPhoneFieldData = await _phoneNumberSuggestion_3Plugin.getPhoneNumber(); // Use the aliased import
+    PhoneNumber intlPhoneFieldData = await _phoneNumberSuggestion_3Plugin
+        .getPhoneNumber(); // Use the aliased import
     getMessage(intlPhoneFieldData: intlPhoneFieldData);
   }
 
-  String getMessage({required PhoneNumber intlPhoneFieldData}) { // Adjust the parameter name accordingly
-    switch (intlPhoneFieldData) { // Use the aliased import
+  String getMessage({required PhoneNumber intlPhoneFieldData}) {
+    // Adjust the parameter name accordingly
+    switch (intlPhoneFieldData) {
+      // Use the aliased import
       case Success():
-        phoneController.text=intlPhoneFieldData.phoneNumber;
-        return intlPhoneFieldData.phoneNumber; // Adjust the property name accordingly
+        phoneController.text = intlPhoneFieldData.phoneNumber;
+        return intlPhoneFieldData
+            .phoneNumber; // Adjust the property name accordingly
       case Failure():
-        return intlPhoneFieldData.errorMessage; // Adjust the property name accordingly
+        return intlPhoneFieldData
+            .errorMessage; // Adjust the property name accordingly
       case ClosedByUser():
         return 'closed by user';
       case NoneOfTheSelected():
         return 'error occurred';
     }
   }
-
-
 }
-

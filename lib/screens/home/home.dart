@@ -59,10 +59,12 @@ class HomeState extends State<Home> {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
-                            onTap: (){
-                              Get.to(const ProfilePage(),
+                            onTap: () {
+                              Get.to(
+                                const ProfilePage(),
                                 transition: Transition.leftToRightWithFade,
-                                duration: const Duration(milliseconds: 500),);
+                                duration: const Duration(milliseconds: 500),
+                              );
                             },
                             child: Container(
                               height: 40,
@@ -188,15 +190,15 @@ class HomeState extends State<Home> {
                 // const SizedBox(height: 30,),
                 const Spacer(),
 
-                 Center(
+                Center(
                   child: Wrap(
                     spacing: 14,
                     runSpacing: 14,
                     children: [
                       HomeTile(
-                        onTap: (){
+                        onTap: () {
                           Get.to(
-                              // const Dashboard(index: 0,),
+                            // const Dashboard(index: 0,),
                             const QrScanPage(),
                             transition: Transition.zoom,
                             duration: const Duration(milliseconds: 500),
@@ -208,22 +210,26 @@ class HomeState extends State<Home> {
                         textColor: Colors.white,
                       ),
                       HomeTile(
-                        onTap: (){
+                        onTap: () {
                           Get.to(
-                          const Dashboard(index: 1,),
-                          transition: Transition.zoom,
-                          duration: const Duration(milliseconds: 500),
-                        );
-                          },
+                            const Dashboard(
+                              index: 1,
+                            ),
+                            transition: Transition.zoom,
+                            duration: const Duration(milliseconds: 500),
+                          );
+                        },
                         backgroundColor: Colors.white,
                         img: "assets/icons/attendance_history_dark.svg",
                         name: "ATTENDANCE \nHISTORY",
                         textColor: Colors.black,
                       ),
                       HomeTile(
-                        onTap: (){
+                        onTap: () {
                           Get.to(
-                            const Dashboard(index: 2,),
+                            const Dashboard(
+                              index: 2,
+                            ),
                             transition: Transition.zoom,
                             duration: const Duration(milliseconds: 500),
                           );
@@ -234,9 +240,11 @@ class HomeState extends State<Home> {
                         textColor: Colors.black,
                       ),
                       HomeTile(
-                        onTap: (){
+                        onTap: () {
                           Get.to(
-                            const Dashboard(index: 3,),
+                            const Dashboard(
+                              index: 3,
+                            ),
                             transition: Transition.zoom,
                             duration: const Duration(milliseconds: 500),
                           );

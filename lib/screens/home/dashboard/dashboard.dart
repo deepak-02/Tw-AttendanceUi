@@ -5,9 +5,9 @@ import '../../../widgets/bottomNavBar/navbar_item.dart';
 import 'checkedin/checkin_page.dart';
 
 class Dashboard extends StatefulWidget {
-  const Dashboard({super.key,  this.index});
+  const Dashboard({super.key, this.index});
 
-  final int ? index;
+  final int? index;
   @override
   DashboardState createState() => DashboardState();
 }
@@ -31,19 +31,17 @@ class DashboardState extends State<Dashboard> {
         _currentIndex = _pageController.page!.round();
       });
     });
-
   }
-
 
   @override
   void dispose() {
-    _pageController.dispose(); // Dispose the controller when the widget is disposed
+    _pageController
+        .dispose(); // Dispose the controller when the widget is disposed
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-
     List<Widget> pages = [
       const CheckInPage(),
       const AttendanceReport(),
@@ -52,7 +50,8 @@ class DashboardState extends State<Dashboard> {
     ];
 
     return PopScope(
-      canPop: true,//_currentIndex== 0, // Disable back gesture if not on the first page
+      canPop:
+          true, //_currentIndex== 0, // Disable back gesture if not on the first page
       onPopInvoked: (bool didPop) {
         // if (!didPop) {
         //   // Navigate to the first page if the back gesture was blocked
@@ -69,8 +68,6 @@ class DashboardState extends State<Dashboard> {
             return pages[index];
           },
         ),
-      
-      
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),
           child: Container(

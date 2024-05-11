@@ -89,7 +89,8 @@ class ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(top: 8.0,bottom: 8.0,left: 10,right: 10),
+                    padding: EdgeInsets.only(
+                        top: 8.0, bottom: 8.0, left: 10, right: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -119,35 +120,45 @@ class ProfilePageState extends State<ProfilePage> {
               ),
             ),
           ),
-
-          const ProfileTile(title: "Phone Number",content: "9078908990",),
-          const ProfileTile(title: "Mail",content: "abcd@techwyseintl.com",),
-          const ProfileTile(title: "Manager",content: "Frinley Paul",),
-          const ProfileTile(title: "Team",content: "Twintl - Team Oasis",),
-
-
+          const ProfileTile(
+            title: "Phone Number",
+            content: "9078908990",
+          ),
+          const ProfileTile(
+            title: "Mail",
+            content: "abcd@techwyseintl.com",
+          ),
+          const ProfileTile(
+            title: "Manager",
+            content: "Frinley Paul",
+          ),
+          const ProfileTile(
+            title: "Team",
+            content: "Twintl - Team Oasis",
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 20,top: 8),
+            padding: const EdgeInsets.only(left: 20, top: 8),
             child: ElevatedButton(
-                onPressed: (){},
+              onPressed: () {},
               style: ElevatedButton.styleFrom(
                 foregroundColor: Colors.white,
                 backgroundColor: const Color(0xFF8DC63F), // Text color
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 0.86, color: Color(0xFF8DC63F)), // Border
+                  side: const BorderSide(
+                      width: 0.86, color: Color(0xFF8DC63F)), // Border
                   borderRadius: BorderRadius.circular(6), // Border radius
                 ),
-               // minimumSize: Size(57.43, 36), // Width and height
+                // minimumSize: Size(57.43, 36), // Width and height
               ),
-                child: const Text(
-              "Edit",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 15.43,
-                    fontWeight: FontWeight.w600,
-                    height: 0,
-                  ),
-            ),
+              child: const Text(
+                "Edit",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15.43,
+                  fontWeight: FontWeight.w600,
+                  height: 0,
+                ),
+              ),
             ),
           )
         ],
@@ -155,5 +166,3 @@ class ProfilePageState extends State<ProfilePage> {
     );
   }
 }
-
-
