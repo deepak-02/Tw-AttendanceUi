@@ -45,6 +45,7 @@ dependencies:
   date_picker_plus: ^3.0.2
   month_picker_dialog: ^2.11.2
   phone_number_suggestion_3: ^0.0.1
+  geolocator: ^11.0.0
 
 dev_dependencies:
   flutter_test:

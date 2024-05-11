@@ -1,9 +1,11 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import '../../services/locator.dart';
 import '../../widgets/background.dart';
 import 'dashboard/dashboard.dart';
 
@@ -17,10 +19,27 @@ class QrScanPage extends StatefulWidget {
 class _QrScanPageState extends State<QrScanPage> {
   late QRViewController controller;
 
+  Position? currentPosition;
+
+
+@override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+
+
+  Future<void> _getCurrentLocation() async {
+    if (await isLocationPermissionGranted()) {
+      currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      setState(() {});
+    }
   }
 
   @override
@@ -42,10 +61,14 @@ class _QrScanPageState extends State<QrScanPage> {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
-                            onTap: () {
-                              // Get.to(const ProfilePage(),
-                              //   transition: Transition.leftToRightWithFade,
-                              //   duration: const Duration(milliseconds: 500),);
+                            onTap: () async {
+
+                                if (await isNearTargetLocation()) {
+                              print("near");
+                              } else {
+                              print("not near");
+                              }
+
                             },
                             child: Container(
                               height: 40,
