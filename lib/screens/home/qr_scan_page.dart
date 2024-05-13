@@ -21,8 +21,50 @@ class _QrScanPageState extends State<QrScanPage> {
 
   Position? currentPosition;
 
+  dynamic isNear;
+  final targetLocation = [
+    //home
+    Position(
+      latitude: 9.579191,
+      longitude: 76.315885,
+      timestamp: DateTime.now(),
+      accuracy: 0.0,
+      altitude: 0.0,
+      altitudeAccuracy: 0.0,
+      heading: 0.0,
+      headingAccuracy: 0.0,
+      speed: 0.0,
+      speedAccuracy: 0.0,
+    ),
+    //office
+    Position(
+      latitude: 9.966287037167914,
+      longitude: 76.29507080515788,
+      timestamp: DateTime.now(),
+      accuracy: 0.0,
+      altitude: 0.0,
+      altitudeAccuracy: 0.0,
+      heading: 0.0,
+      headingAccuracy: 0.0,
+      speed: 0.0,
+      speedAccuracy: 0.0,
+    ),
+    // valparai
+    Position(
+      latitude: 10.325789171013938,
+      longitude: 76.95583307172461,
+      timestamp: DateTime.now(),
+      accuracy: 0.0,
+      altitude: 0.0,
+      altitudeAccuracy: 0.0,
+      heading: 0.0,
+      headingAccuracy: 0.0,
+      speed: 0.0,
+      speedAccuracy: 0.0,
+    ),
+  ];
 
-@override
+  @override
   void initState() {
     super.initState();
     _getCurrentLocation();
@@ -34,11 +76,19 @@ class _QrScanPageState extends State<QrScanPage> {
     super.dispose();
   }
 
-
   Future<void> _getCurrentLocation() async {
     if (await isLocationPermissionGranted()) {
-      currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      currentPosition = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
       setState(() {});
+    }
+
+    for (int i = 0; i <= targetLocation.length; i++) {
+      if (await isNearTargetLocation(targetLocation[i])) {
+        isNear = true;
+        setState(() {});
+        break;
+      }
     }
   }
 
@@ -61,14 +111,10 @@ class _QrScanPageState extends State<QrScanPage> {
                         Padding(
                           padding: const EdgeInsets.all(10),
                           child: GestureDetector(
-                            onTap: () async {
-
-                                if (await isNearTargetLocation()) {
-                              print("near");
+                            onTap: () {
+                              if (isNear) {
                               } else {
-                              print("not near");
                               }
-
                             },
                             child: Container(
                               height: 40,
@@ -144,71 +190,84 @@ class _QrScanPageState extends State<QrScanPage> {
 
                 Padding(
                   padding: const EdgeInsets.only(top: 30, bottom: 50),
-                  child: Stack(
-                    children: [
-                      //replace it with a qr scan viewfinder
-                      // Container(
-                      //   alignment: Alignment.center,
-                      //   height: 196,
-                      //   width: 196,
-                      //   color: const Color(0xffd9d9d9),
-                      // ),
+                  child: isNear == null
+                      ? Container(
+                          alignment: Alignment.center,
+                          color: Colors.grey,
+                          height: 196,
+                          width: 196,
+                          child: const CircularProgressIndicator(),
+                        )
+                      : Stack(
+                          children: [
+                            //replace it with a qr scan viewfinder
+                            // Container(
+                            //   alignment: Alignment.center,
+                            //   height: 196,
+                            //   width: 196,
+                            //   color: const Color(0xffd9d9d9),
+                            // ),
 
-                      Container(
-                        alignment: Alignment.center,
-                        height: 196,
-                        width: 196,
-                        child: QRView(
-                          key: GlobalKey(),
-                          onQRViewCreated: (QRViewController newController) {
-                            controller = newController;
-                            controller.scannedDataStream.listen((scanData) {
-                              int index = 0;
-                              index++;
-                              if (kDebugMode) {
-                                print('QR Code Scanned: ${scanData.code}');
-                                print('Scanned: $index');
-                              }
+                            Container(
+                              alignment: Alignment.center,
+                              height: 196,
+                              width: 196,
+                              child: QRView(
+                                key: GlobalKey(),
+                                onQRViewCreated:
+                                    (QRViewController newController) {
+                                  controller = newController;
+                                  controller.scannedDataStream
+                                      .listen((scanData) {
+                                    int index = 0;
+                                    index++;
+                                    if (kDebugMode) {
+                                      print(
+                                          'QR Code Scanned: ${scanData.code}');
+                                      print('Scanned: $index');
+                                    }
 
-                              // Handle the scanned data here
+                                    // Handle the scanned data here
 
-                              // Fluttertoast.showToast(
-                              //     msg: "${scanData.code}",
-                              //     toastLength: Toast.LENGTH_SHORT,
-                              //     gravity: ToastGravity.CENTER,
-                              //     timeInSecForIosWeb: 1,
-                              //     fontSize: 16.0
-                              // );
+                                    // Fluttertoast.showToast(
+                                    //     msg: "${scanData.code}",
+                                    //     toastLength: Toast.LENGTH_SHORT,
+                                    //     gravity: ToastGravity.CENTER,
+                                    //     timeInSecForIosWeb: 1,
+                                    //     fontSize: 16.0
+                                    // );
 
-                              controller.pauseCamera();
-                              newController.pauseCamera();
+                                    controller.pauseCamera();
+                                    newController.pauseCamera();
 
-                              controller.dispose();
-                              newController.dispose();
+                                    controller.dispose();
+                                    newController.dispose();
 
-                              Get.off(
-                                const Dashboard(
-                                  index: 0,
-                                ),
-                                transition: Transition.zoom,
-                                duration: const Duration(milliseconds: 500),
-                              );
-                            });
-                          },
+                                    Get.off(
+                                      const Dashboard(
+                                        index: 0,
+                                      ),
+                                      transition: Transition.zoom,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                    );
+                                  });
+                                },
+                              ),
+                            ),
+
+                            Container(
+                              alignment: Alignment.center,
+                              height: 196,
+                              width: 196,
+                              child: Opacity(
+                                opacity: 0.5,
+                                child: Image.asset(
+                                    "assets/images/qr_cross_img.png"),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-
-                      Container(
-                        alignment: Alignment.center,
-                        height: 196,
-                        width: 196,
-                        child: Opacity(
-                          opacity: 0.5,
-                          child: Image.asset("assets/images/qr_cross_img.png"),
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
 
                 Container(
@@ -226,16 +285,27 @@ class _QrScanPageState extends State<QrScanPage> {
                       borderRadius: BorderRadius.circular(7),
                     ),
                   ),
-                  child: const Text(
-                    'Scanning Code...',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      height: 0,
-                    ),
-                  ),
+                  child: isNear == null || isNear == false
+                      ? const Text(
+                          "Not allowed",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
+                        )
+                      : const Text(
+                          'Scanning Code...',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Inter',
+                            fontWeight: FontWeight.w600,
+                            height: 0,
+                          ),
+                        ),
                 ),
 
                 // const SizedBox(height: 20,),

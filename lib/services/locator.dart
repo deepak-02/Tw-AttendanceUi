@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 
-Future<bool> isNearTargetLocation() async {
+Future<bool> isNearTargetLocation(Position targetLocation) async {
 
   if (!await isLocationPermissionGranted()) {
     // Handle the case where the user denied location permissions.
@@ -19,26 +19,23 @@ Future<bool> isNearTargetLocation() async {
   }
 
   final position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-  final targetLocation = Position(
-    latitude: 9.579191,
-    longitude: 76.315885,
-    timestamp: DateTime.now(),
-    accuracy: 0.0,
-    altitude: 0.0,
-    altitudeAccuracy: 0.0,
-    heading: 0.0,
-    headingAccuracy: 0.0,
-    speed: 0.0,
-    speedAccuracy: 0.0,
-  );
+  // final targetLocation = Position(
+  //   latitude: 9.579191,
+  //   longitude: 76.315885,
+  //   timestamp: DateTime.now(),
+  //   accuracy: 0.0,
+  //   altitude: 0.0,
+  //   altitudeAccuracy: 0.0,
+  //   heading: 0.0,
+  //   headingAccuracy: 0.0,
+  //   speed: 0.0,
+  //   speedAccuracy: 0.0,
+  // );
 
 
-  print("position: $position");
-  print("targetLocation: $targetLocation");
 
   final distance = Geolocator.distanceBetween(position.latitude, position.longitude, targetLocation.latitude, targetLocation.longitude);
   // Check if the distance is within a certain threshold, e.g., 100 meters
-  print("distance: $distance");
   return distance <= 100;
 }
 
